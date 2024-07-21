@@ -34,35 +34,35 @@ const reducer = (state, action) => {
                 cart: []
             };
 
-        case "INCREASE":
-            const itemToIncrease = state.cart.find(item => item.id === action.id);
-            if (itemToIncrease) {
-                const updatedCart = state.cart.map(item => 
-                    item.id === action.id
-                    ? { ...item, amount: item.amount + 1, price: item.price + item.price / item.amount }
-                    : item
-                );
-                return {
-                    ...state,
-                    cart: updatedCart
-                };
-            }
-            return state;
+            case "INCREASE":
+                const itemToIncrease = state.cart.find(item => item.id === action.id);
+                if (itemToIncrease) {
+                    const updatedCart = state.cart.map(item => 
+                        item.id === action.id
+                        ? { ...item, amount: item.amount + 1 }
+                        : item
+                    );
+                    return {
+                        ...state,
+                        cart: updatedCart
+                    };
+                }
+                return state;
 
-        case "DECREASE":
-            const itemToDecrease = state.cart.find(item => item.id === action.id);
-            if (itemToDecrease && itemToDecrease.amount > 1) {
-                const updatedCart = state.cart.map(item => 
-                    item.id === action.id
-                    ? { ...item, amount: item.amount - 1, price: item.price - item.price / item.amount }
-                    : item
-                );
-                return {
-                    ...state,
-                    cart: updatedCart
-                };
-            }
-            return state;
+                case "DECREASE":
+                    const itemToDecrease = state.cart.find(item => item.id === action.id);
+                    if (itemToDecrease && itemToDecrease.amount > 1) {
+                        const updatedCart = state.cart.map(item => 
+                            item.id === action.id
+                            ? { ...item, amount: item.amount - 1 }
+                            : item
+                        );
+                        return {
+                            ...state,
+                            cart: updatedCart
+                        };
+                    }
+                    return state;
 
         case "SET_USER":
             let userName = null;

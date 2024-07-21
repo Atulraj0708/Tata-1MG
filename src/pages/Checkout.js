@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from "../Components/Navbar/Header";
 import CartProduct from "../Components/Product/CartProduct";
 import { useSiteContext } from "../store/SiteProvider";
-import classes from "./Checkout.module.css";
+import  "./Checkout.css";
 
 const formatPrice = (iprice) => {
     let price = iprice.toString();
@@ -40,26 +40,26 @@ const Checkout = () => {
     return (
         <div>
             <Header />
-            <div className={classes.page}>
-                <div className={classes.items}>
-                    <div className={classes.header}>
-                        {(totalAmount > 0) ? <h1 className={classes.h1}>Shopping Cart</h1> : <h1 className={classes.h1}>Your Cart is Empty</h1>}
+            <div className="page">
+                <div className="items">
+                    <div className="header">
+                        {(totalAmount > 0) ? <h1 className="h1">Shopping Cart</h1> : <h1 className="h1">Your Cart is Empty</h1>}
                         <p>Price</p>
                     </div>
                     {state.cart.length > 0 ? (
                         state.cart.map((item) => (
-                            <div key={item.id} className={classes.cartProduct}>
+                            <div key={item.id} className="cartProduct">
                                 <img src={item.image} alt={item.description} />
-                                <div className={classes.cartProductDetails}>
+                                <div className="cartProductDetails">
                                     <p>{item.description}</p>
-                                    <div className={classes.quantityControl}>
-                                        <button className={classes.quantityButton} onClick={() => dispatch({ type: "DECREASE", id: item.id })}>-</button>
-                                        <span className={classes.quantity}>{item.amount}</span>
-                                        <button className={classes.quantityButton} onClick={() => dispatch({ type: "INCREASE", id: item.id })}>+</button>
+                                    <div className="quantityControl">
+                                        <button className="quantityButton" onClick={() => dispatch({ type: "DECREASE", id: item.id })}>-</button>
+                                        <span className="quantity">{item.amount}</span>
+                                        <button className="quantityButton" onClick={() => dispatch({ type: "INCREASE", id: item.id })}>+</button>
                                     </div>
-                                    <button className={classes.removeButton} onClick={() => dispatch({ type: "REMOVE", id: item.id })}>Remove from Cart</button>
+                                    <button className="removeButton" onClick={() => dispatch({ type: "REMOVE", id: item.id })}>Remove from Cart</button>
                                 </div>
-                                <p className={classes.price}>
+                                <p className="price">
                                     <small><sup>₹</sup></small>
                                     <strong>{item.price * item.amount}</strong>
                                 </p>
@@ -70,12 +70,12 @@ const Checkout = () => {
                     )}
                 </div>
                 {totalAmount > 0 && (
-                    <div className={classes.bill}>
+                    <div className="bill">
                         <p>
                             <span>{`Subtotal (${totalAmount} items): ₹`}</span>
                             <strong>{formattedTotalPrice}</strong>
                         </p>
-                        <button className={classes.button} onClick={handleProceedToBuy}>Proceed to Buy</button>
+                        <button className="button" onClick={handleProceedToBuy}>Proceed to Buy</button>
                     </div>
                 )}
             </div>

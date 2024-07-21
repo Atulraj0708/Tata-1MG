@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   height: 40px;
-  align-items: center; /* Align items vertically center */
+  align-items: center; 
   padding: 1rem;
   background-color: #fff;
   font-weight: 600;

@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import { myAuth } from "../store/firebase";
 import Swal from 'sweetalert2'; // Import SweetAlert2
-import classes from "./Login.module.css";
+import classes from "./Login.css";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -62,18 +62,18 @@ const Login = () => {
     };
 
     return (
-        <div className={classes.body}>
-            <Link to="/" className={classes.logo}>
+        <div className="body">
+            <Link to="/" className="logo">
                 <img src="https://www.1mg.com/images/tata_1mg_logo.svg" alt="Logo" />
             </Link>
-            <div className={classes.card}>
-                <h1 className={classes.h1}>Sign-In</h1>
+            <div className="card">
+                <h1 className="h1">Sign-In</h1>
                 <form>
-                    <label className={classes.label} htmlFor="email">Email</label>
-                    <input ref={emailRef} className={classes.input} type="email" name="email" id="email" />
+                    <label className="label" htmlFor="email">Email</label>
+                    <input ref={emailRef} className="input" type="email" name="email" id="email" />
                     <label className={classes.label} htmlFor="password">Password</label>
-                    <input ref={passwordRef} className={classes.input} type="password" name="password" id="password" />
-                    <button className={classes.button} onClick={signInHandler}>Sign-In</button>
+                    <input ref={passwordRef} className="input" type="password" name="password" id="password" />
+                    <button className="button" onClick={signInHandler}>Sign-In</button>
                 </form>
             </div>
             <div className={classes.newUser}>
