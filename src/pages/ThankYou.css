@@ -1,0 +1,31 @@
+.thank-you-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f8f9fa;
+    color: #343a40;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.thank-you-heading {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.shop-again-link {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.shop-again-link:hover {
+    background-color: #0056b3;
+}

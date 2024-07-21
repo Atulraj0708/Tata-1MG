@@ -1,0 +1,124 @@
+.header_1Con {
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+  align-items: center; /* Align items vertically center */
+  padding: 1rem;
+  background-color: #fff;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+.firstPart {
+  display: flex;
+  align-items: center;
+}
+
+.logoCon img {
+  height: 2.5rem;
+}
+
+.tabList {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-left: 2rem;
+}
+
+.tabList li {
+  position: relative;
+  margin-right: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.tabList li .badge {
+  background-color: #ff6f61;
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  margin-left: 0.5rem; /* Add margin to ensure spacing between text and badge */
+}
+
+.secondPart {
+  display: flex;
+  align-items: center;
+}
+
+.list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list li {
+  margin-right: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.linkref1 {
+  text-decoration: none;
+  color: #333;
+}
+
+.userMenu {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.userIcon {
+  margin-right: 0.5rem;
+}
+
+.userDropdown {
+  position: absolute;
+  top: 2.5rem;
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 10;
+  width: 200px;
+  display: none;
+}
+
+.userMenu:hover .userDropdown {
+  display: block;
+}
+
+.userDropdown p {
+  margin: 0;
+  padding: 0.5rem 1rem;
+  background-color: #f4f4f4;
+  border-bottom: 1px solid #ddd;
+}
+
+.userDropdown ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.userDropdown li {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.userDropdown li:hover,
+.logoutButton:hover {
+  background-color: #f4f4f4;
+}
+
+.logoutButton {
+  color: red;
+}

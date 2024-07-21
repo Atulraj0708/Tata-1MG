@@ -1,0 +1,33 @@
+.cartIcon {
+  margin: 1rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer; /* Add cursor pointer for better UX */
+}
+
+.count {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: #ff6f61;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-weight: bold;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cart {
+  color: black; /* Change color to red */
+  transition: transform 0.2s ease-in-out; /* Add a transition for hover effect */
+}
+
+.cartIcon:hover .cart {
+  transform: scale(1.1); /* Slightly enlarge the icon on hover */
+}

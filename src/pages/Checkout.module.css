@@ -1,0 +1,73 @@
+.page {
+    display: flex;
+    max-width: 1500px;
+    font-size: 15px;
+    line-height: 20px;
+    color: #111;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.h1 {
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.items {
+    background-color: #fff;
+    min-width: 645px;
+    padding: 1rem;
+}
+
+.bill {
+    background-color: #fff;
+    min-width: 300px;
+    padding: 1rem;
+    font-size: 20px;
+    height: 100px;
+    /* display: flex; */
+    text-align: center;
+}
+
+.header {
+    border-bottom: 2px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    position: realtive;
+}
+
+.footer {
+    border-top: 2px solid #ddd;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 20px;
+    padding-top: 1rem;
+}
+
+.button {
+    border: none;
+    background-color: #ff6f61;
+    color: #333;
+    cursor: pointer;
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+}
+
+.button:hover,
+.button:active {
+    background-color: #ff6f61;
+
+}
+
+@media(min-width: 980px){
+    .items {
+        max-width: 900px;
+    }
+
+    .bill {
+        max-width: 500px;
+    }
+}

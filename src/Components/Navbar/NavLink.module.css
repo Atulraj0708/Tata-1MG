@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 0.3rem;
+}
+
+.container:hover {
+    border: 1px solid white;
+}
+
+.container span:first-child{
+    color: #c7c4c7;
+    font-size: 0.7rem;
+}
+
+.container span:last-child{
+    /* color: #f8f9ff; */
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
