@@ -76,6 +76,27 @@ const Products = () => {
                 description="Tata 1mg Vitamin C"
                 price = "122"
             />
+            <Product
+                id = "10"
+                image = "https://onemg.gumlet.io/a_ignore,w_380,h_380,c_fit,q_auto,f_auto/99bdd5b7284c4be8ac7912d92aa17fa8.jpg"
+                rating = "4.2"
+                description="Collagen Booster"
+                price = "482"
+            />
+            <Product
+                id = "11"
+                image = "https://onemg.gumlet.io/a_ignore,w_380,h_380,c_fit,q_auto,f_auto/fd4630265ce3412ea5f12c3303fb44cf.jpg"
+                rating = "4.2"
+                description="Gradeone Nutrition"
+                price = "224"
+            />
+            <Product
+                id = "12"
+                image = "https://onemg.gumlet.io/a_ignore,w_380,h_380,c_fit,q_auto,f_auto/9d38272cc432444e8a59fb92a721e984.jpg"
+                rating = "4.2"
+                description="Oziva Plant-Based"
+                price = "849"
+            />
         </div>
     );
 }

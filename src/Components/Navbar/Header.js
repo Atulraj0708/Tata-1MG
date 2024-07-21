@@ -5,21 +5,51 @@ import NavLink from "./NavLink";
 import CartIcon from "../Cart/CartIcon";
 import { useSiteContext } from "../../store/SiteProvider";
 import { myAuth } from "../../store/firebase";
+import Swal from 'sweetalert2'; // Import SweetAlert2
 import './Header.css';
 
 const Header = () => {
-  const ctx = useSiteContext()[0];
+  const [state, dispatch] = useSiteContext(); // Destructure the dispatch function
 
   const logoutHandler = () => {
-    myAuth.signOut(myAuth.auth);
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will be logged out and your cart will be cleared.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, log out',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        myAuth.signOut(myAuth.auth)
+          .then(() => {
+            // Clear cart in context
+            dispatch({ type: "CLEAR" });
+            Swal.fire({
+              icon: 'success',
+              title: 'Logged Out',
+              text: 'You have been logged out successfully.',
+              confirmButtonText: 'OK'
+            });
+          })
+          .catch((err) => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Logout Failed',
+              text: err.message,
+              confirmButtonText: 'Try Again'
+            });
+          });
+      }
+    });
   }
 
-  const userElement = ctx.user ? (
+  const userElement = state.user ? (
     <div className="userMenu">
       <li onClick={logoutHandler} className="logoutButton">Logout</li>
       <FaUserCircle size={24} className="userIcon" />
       <div className="userDropdown">
-        <p>Hi, {(ctx.user.length > 6) ? `${ctx.user.slice(0, 6)}...` : ctx.user}</p>
+        <p>Hi, {(state.user.length > 6) ? `${state.user.slice(0, 6)}...` : state.user}</p>
         <hr style={{ color: "grey" }} />
         <ul>
           {/* <li>View profile</li>

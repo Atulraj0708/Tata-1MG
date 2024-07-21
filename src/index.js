@@ -15,5 +15,3 @@ root.render(
     </BrowserRouter>
   </SiteProvider>
 );
-
-// Hosted Url : https://clone-c6aca.web.app

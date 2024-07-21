@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import { myAuth } from "../store/firebase";
+import Swal from 'sweetalert2'; // Import SweetAlert2
 import classes from "./Login.module.css";
 
 const Login = () => {
@@ -15,11 +16,22 @@ const Login = () => {
 
         myAuth.signInWithEmailAndPassword(myAuth.auth, email, password)
             .then((auth) => {
-                console.log(auth);
-                navigate("/");
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sign-In Successful',
+                    text: 'Welcome back!',
+                    confirmButtonText: 'Continue'
+                }).then(() => {
+                    navigate("/");
+                });
             })
             .catch((err) => {
-                alert(err.message);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Sign-In Failed',
+                    text: err.message,
+                    confirmButtonText: 'Try Again'
+                });
             });
     };
 
@@ -30,11 +42,22 @@ const Login = () => {
 
         myAuth.createUserWithEmailAndPassword(myAuth.auth, email, password)
             .then((auth) => {
-                console.log(auth);
-                navigate("/");
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Account Created',
+                    text: 'You can now sign in!',
+                    confirmButtonText: 'Login'
+                }).then(() => {
+                    navigate("/");
+                });
             })
             .catch((err) => {
-                alert(err.message);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Registration Failed',
+                    text: err.message,
+                    confirmButtonText: 'Try Again'
+                });
             });
     };
 

@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import Header from "../Components/Navbar/Header";
 import CartProduct from "../Components/Product/CartProduct";
@@ -30,18 +29,12 @@ const formatPrice = (iprice) => {
 const Checkout = () => {
     const navigate = useNavigate();
     const [state, dispatch] = useSiteContext();
-    const totalPrice = state.cart.reduce((acc, item) => acc + item.price, 0);
+    const totalPrice = state.cart.reduce((acc, item) => acc + item.price * item.amount, 0);
     const totalAmount = state.cart.reduce((acc, item) => acc + item.amount, 0);
     const formattedTotalPrice = formatPrice(totalPrice);
 
-    useEffect(() => {
-        // Ensure cart is cleared
-        console.log("Clearing cart...");
-        dispatch({ type: "CLEAR" });
-    }, [dispatch]);
-
     const handleProceedToBuy = () => {
-        navigate('/thank-you');
+        navigate('/payment');
     }
 
     return (
@@ -53,23 +46,38 @@ const Checkout = () => {
                         {(totalAmount > 0) ? <h1 className={classes.h1}>Shopping Cart</h1> : <h1 className={classes.h1}>Your Cart is Empty</h1>}
                         <p>Price</p>
                     </div>
-                    {state.cart.map((item) => (
-                        <CartProduct key={item.id} item={item} />
-                    ))}
-                    <div className={classes.footer}>
+                    {state.cart.length > 0 ? (
+                        state.cart.map((item) => (
+                            <div key={item.id} className={classes.cartProduct}>
+                                <img src={item.image} alt={item.description} />
+                                <div className={classes.cartProductDetails}>
+                                    <p>{item.description}</p>
+                                    <div className={classes.quantityControl}>
+                                        <button className={classes.quantityButton} onClick={() => dispatch({ type: "DECREASE", id: item.id })}>-</button>
+                                        <span className={classes.quantity}>{item.amount}</span>
+                                        <button className={classes.quantityButton} onClick={() => dispatch({ type: "INCREASE", id: item.id })}>+</button>
+                                    </div>
+                                    <button className={classes.removeButton} onClick={() => dispatch({ type: "REMOVE", id: item.id })}>Remove from Cart</button>
+                                </div>
+                                <p className={classes.price}>
+                                    <small><sup>₹</sup></small>
+                                    <strong>{item.price * item.amount}</strong>
+                                </p>
+                            </div>
+                        ))
+                    ) : (
+                        <p>Your cart is empty.</p>
+                    )}
+                </div>
+                {totalAmount > 0 && (
+                    <div className={classes.bill}>
                         <p>
                             <span>{`Subtotal (${totalAmount} items): ₹`}</span>
                             <strong>{formattedTotalPrice}</strong>
                         </p>
+                        <button className={classes.button} onClick={handleProceedToBuy}>Proceed to Buy</button>
                     </div>
-                </div>
-                {(totalAmount > 0) && <div className={classes.bill}>
-                    <p>
-                        <span>{`Subtotal (${totalAmount} items): ₹`}</span>
-                        <strong>{formattedTotalPrice}</strong>
-                    </p>
-                    <button className={classes.button} onClick={handleProceedToBuy}>Proceed to Buy</button>
-                </div>}
+                )}
             </div>
         </div>
     );

@@ -1,65 +1,64 @@
+import React, { useState } from 'react';
 import { useSiteContext } from "../../store/SiteProvider";
-
-import classes from "./CartProduct.module.css";
-
-// const formatPrice = (iprice) => {
-
-//     let price = iprice + "";
-
-//     const len = price.length;
-//     let formattedPrice = "";
-
-//     let pos = 3;
-//     let temp = 0;
-
-//     for(let i = len-1 ; i >= 0 ; i--){
-//         temp++;
-
-//         if(temp === pos){
-//             formattedPrice = price.charAt(i) + formattedPrice;
-//             formattedPrice = "," + formattedPrice;
-//             temp = 0;
-
-//             if(temp === 3){
-//                 pos = 2;
-//             }
-//         }
-//         else {
-//             formattedPrice = price.charAt(i) + formattedPrice;
-//         }
-
-//     }
-
-//     return formattedPrice;
-// }
+import "./CartProduct.css";
 
 const CartProduct = (props) => {
-
     const dispatch = useSiteContext()[1];
+    const [quantity, setQuantity] = useState(props.item.amount);
 
     const removeItemHandler = () => {
-
         dispatch({
             type: "REMOVE",
             id: props.item.id
-        })
-    }
+        });
+    };
+
+    const increaseQuantity = () => {
+        const newQuantity = quantity + 1;
+        setQuantity(newQuantity);
+
+        dispatch({
+            type: "ADD",
+            item: {
+                ...props.item,
+                amount: newQuantity
+            }
+        });
+    };
+
+    const decreaseQuantity = () => {
+        if (quantity > 1) {
+            const newQuantity = quantity - 1;
+            setQuantity(newQuantity);
+
+            dispatch({
+                type: "ADD",
+                item: {
+                    ...props.item,
+                    amount: newQuantity
+                }
+            });
+        }
+    };
 
     return (
-        <div className = {classes.card}>
-            <img className = {classes.img} src= {props.item.image} alt="" />
-            <div className = {classes.desc}>
+        <div className="card">
+            <img className="img" src={props.item.image} alt="" />
+            <div className="desc">
                 <p>{props.item.description}</p>
-                <p className = {classes.qty}>{`Qty: ${props.item.amount}`}</p>
-                <button onClick={removeItemHandler} className = {classes.button}>Remove from Cart</button>
+                <div className="quantityControl">
+                    <button onClick={decreaseQuantity} className="quantityButton">-</button>
+                    <span className="quantity">{quantity}</span>
+                    <button onClick={increaseQuantity} className="quantityButton">+</button>
+                </div>
+                <button onClick={removeItemHandler} className="button">Remove from Cart</button>
             </div>
-            <p className = {classes.price}>
+            <p className="price">
                 <small><sup>₹</sup></small>
-                <strong>{(props.item.price)}</strong>
+                <strong>{props.item.price * quantity}</strong>
             </p>
         </div>
     );
-
-}
+};
 
 export default CartProduct;

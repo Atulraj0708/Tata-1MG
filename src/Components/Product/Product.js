@@ -1,78 +1,86 @@
-
-
-import classes from "./Product.module.css";
+import React from 'react';
+import { useSiteContext } from "../../store/SiteProvider";
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
-import { useSiteContext } from "../../store/SiteProvider";
+import Swal from 'sweetalert2'; 
+import './Product.css';
 
 const formatPrice = (price) => {
     const len = price.length;
     let formattedPrice = "";
-
     let pos = 3;
     let temp = 0;
-
-    for(let i = len-1 ; i >= 0 ; i--){
+    for (let i = len - 1; i >= 0; i--) {
         temp++;
-
-        if(temp === pos){
+        if (temp === pos) {
             formattedPrice = price.charAt(i) + formattedPrice;
             formattedPrice = "" + formattedPrice;
             temp = 0;
-
-            if(temp === 3){
+            if (temp === 3) {
                 pos = 2;
             }
-        }
-        else {
+        } else {
             formattedPrice = price.charAt(i) + formattedPrice;
         }
-
     }
-
     return formattedPrice;
 }
 
-const Product = ({id,image,description,rating,price}) => {
-
-    const dispatch = useSiteContext()[1];
+const Product = ({ id, image, description, rating, price }) => {
+    const [state, dispatch] = useSiteContext();
+    const { user } = state;
 
     const addToCartHandler = () => {
-        dispatch({
-            type: "ADD",
-            item: {
-                id,
-                image,
-                description,
-                rating,
-                price,
-                amount: 1
-            }
-        })
-    }
+        if (user) {
+            dispatch({
+                type: "ADD",
+                item: {
+                    id,
+                    image,
+                    description,
+                    rating,
+                    price,
+                    amount: 1
+                }
+            });
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Item Added to Cart',
+                text: 'The item has been added to your cart successfully!',
+                confirmButtonText: 'OK'
+            });
+        } else {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Please Login',
+                text: 'You need to be logged in to add items to your cart!',
+                confirmButtonText: 'OK'
+            });
+        }
+    };
 
     return (
-        <div className = {classes.card}>
-            <div className = {classes.imgContainer}>
-                <img src= {image} alt="description" />
-            </div>            
+        <div className="card">
+            <div className="imgContainer">
+                <img src={image} alt="description" />
+            </div>
             <div>
-                <p className = {classes.description}>{description}</p>
-                <div className = {classes.rating}>
+                <p className="description">{description}</p>
+                <div className="rating">
                     {
                         Array(5)
                         .fill()
-                        .map((ele,i) => {
-                            if(i < rating){
-                                return <StarIcon key = {i}/>
-                            }
-                            else{
-                                return <StarBorderIcon key = {i}/>
+                        .map((ele, i) => {
+                            if (i < rating) {
+                                return <StarIcon key={i} />
+                            } else {
+                                return <StarBorderIcon key={i} />
                             }
                         })
                     }
                 </div>
-                <p className = {classes.price}>
+                <p className="price">
                     <small><sup>₹</sup></small>
                     <strong>{formatPrice(price)}</strong>
                 </p>
