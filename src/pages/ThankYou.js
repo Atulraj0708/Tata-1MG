@@ -8,7 +8,6 @@ const ThankYou = () => {
     
     const [state, dispatch] = useSiteContext();
     useEffect(() => {
-        // Ensure cart is cleared
         console.log("Clearing cart...");
         dispatch({ type: "CLEAR" });
     }, [dispatch]);

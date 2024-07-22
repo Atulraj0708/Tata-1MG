@@ -5,11 +5,11 @@ import NavLink from "./NavLink";
 import CartIcon from "../Cart/CartIcon";
 import { useSiteContext } from "../../store/SiteProvider";
 import { myAuth } from "../../store/firebase";
-import Swal from 'sweetalert2'; // Import SweetAlert2
+import Swal from 'sweetalert2'; 
 import './Header.css';
 
 const Header = () => {
-  const [state, dispatch] = useSiteContext(); // Destructure the dispatch function
+  const [state, dispatch] = useSiteContext(); 
 
   const logoutHandler = () => {
     Swal.fire({
@@ -23,7 +23,6 @@ const Header = () => {
       if (result.isConfirmed) {
         myAuth.signOut(myAuth.auth)
           .then(() => {
-            // Clear cart in context
             dispatch({ type: "CLEAR" });
             Swal.fire({
               icon: 'success',
@@ -52,10 +51,6 @@ const Header = () => {
         <p>Hi, {(state.user.length > 6) ? `${state.user.slice(0, 6)}...` : state.user}</p>
         <hr style={{ color: "grey" }} />
         <ul>
-          {/* <li>View profile</li>
-          <li>My orders</li>
-          <li>Manage Payments</li>
-          <li>My lab test</li> */}
         </ul>
       </div>
     </div>

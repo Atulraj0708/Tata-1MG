@@ -21,7 +21,6 @@ const Header2 = () => {
     <div className="header_2Con">
       <div className="firstCon">
         <div className="container">
-          {/* Location */}
           <div className="locationCon">
             <span>
               <ImLocation />
@@ -35,7 +34,6 @@ const Header2 = () => {
               <IoMdLocate />
             </span>
           </div>
-          {/* Search bar */}
           <div className="searchbarCon">
             <input
               type="text"
